@@ -1,0 +1,27 @@
+#--------------------------------------------------
+# Répertoire : /public/
+#--------------------------------------------------
+
+Options +FollowSymlinks
+
+RewriteEngine on
+
+#--------------------------------------------------
+# Règles de réécriture d'URL :
+#--------------------------------------------------
+
+#CSS JS IMG
+RewriteRule ([a-zA-Z]+.css)$   public/css/$1 [L,QSA]
+RewriteRule ([a-zA-Z]+.js)$   public/js/$1 [L,QSA]
+RewriteRule (img/.*)$   public/$1 [L,QSA]
+
+# Controller
+RewriteRule ^([a-zA-Z0-9]+)/$   public/index.php?page=$1 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)$   public/index.php?page=$1 [L,QSA]
+
+# Controller + Action
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$   public/index.php?page=$1&action=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/$   public/index.php?page=$1&action=$2 [L,QSA]
+
+# Index
+RewriteRule ^$   public/index.php [L]
